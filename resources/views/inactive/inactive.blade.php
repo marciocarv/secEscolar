@@ -14,7 +14,7 @@
 
   <div class="flex justify-center">
     <a href="{{route('manageBoxes')}}" class="p-5 button green"><span class="icon">
-      <i class="fa-regular fa-square-plus"></i></span> Adicionar Caixa
+      <i class="fa-solid fa-boxes-stacked"></i></span> Gerenciar Caixas
     </a> 
   </div>
 

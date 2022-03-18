@@ -65,6 +65,14 @@ class BoxController extends Controller
         }else{
             return redirect()->route('manageBoxes')->with('error', 'Não foi possível Editar a caixa!');
         }
+    }
 
+    public function view($id){
+        $box = Box::find($id);
+        $title = "Gerenciar Caixa ".$box->description;
+
+        $bond_students = $box->bond_students;
+
+        return view('box.viewBox', ['title'=>$title, 'bond_students'=>$bond_students, 'box'=>$box]);
     }
 }
