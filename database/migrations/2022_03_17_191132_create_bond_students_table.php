@@ -17,7 +17,8 @@ class CreateBondStudentsTable extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('box_id')->constrained()->onDelete('cascade');
-            $table->string('status');
+            $table->integer('order');
+            $table->string('status')->default('ARQUIVADO');
             $table->integer('entry_year')->nullable();
             $table->integer('exit_year');
             $table->timestamps();

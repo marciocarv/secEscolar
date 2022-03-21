@@ -19,6 +19,6 @@ class Box extends Model
     }
 
     public function bond_students(){
-        return $this->hasMany(Bond_student::class);
+        return $this->hasMany(Bond_student::class)->orderBy('order');
     }
 }

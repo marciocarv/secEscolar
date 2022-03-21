@@ -51,14 +51,14 @@
             <div class="control icons-left">
               <input 
                 class="input" 
-                type="text" 
+                type="number" 
                 name="order" 
                 placeholder="Ordem"
                 @if($action == 'update')
                 value="{{$bond_student->order}}"
                 @endif
                 >
-              <span class="icon left"><i class="fa-solid fa-box-open"></i></span>
+              <span class="icon left"><i class="fa-solid fa-list"></i></span>
             </div>
           </div>
         </div>
@@ -72,13 +72,14 @@
               <input 
                 class="input" 
                 type="text" 
-                name="name" 
+                name="name"
+                id="uppercase_student"
                 placeholder="Nome"
                 @if($action == 'update')
                 value="{{$student->name}}"
                 @endif
                 >
-              <span class="icon left"><i class="fa-solid fa-box-open"></i></span>
+              <span class="icon left"><i class="fa-solid fa-id-card"></i></span>
             </div>
           </div>
         </div>
@@ -98,7 +99,7 @@
                 value="{{$student->date_birth}}"
                 @endif
                 >
-              <span class="icon left"><i class="fa-solid fa-box-open"></i></span>
+              <span class="icon left"><i class="fa-solid fa-calendar-days"></i></span>
             </div>
           </div>
         </div>
@@ -112,33 +113,54 @@
               <input 
                 class="input" 
                 type="text" 
-                name="mother" 
+                name="mother"
+                id="uppercase_mother"
                 placeholder="Nome da mãe"
                 @if($action == 'update')
                 value="{{$student->mother}}"
                 @endif
                 >
-              <span class="icon left"><i class="fa-solid fa-box-open"></i></span>
+              <span class="icon left"><i class="fa-solid fa-person-breastfeeding"></i></span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Período</label>
+        <label class="label">Ano de Entrada</label>
         <div class="field-body">
-          <div class="field">
-            teste<div class="control icons-left">
+          <div class="field flex flex-wrap">
+            <div class="control icons-left">
                 <input 
-                class="input" 
-                type="date" 
+                class="input w-56" 
+                type="number" 
                 name="entry_year" 
                 placeholder=""
                 @if($action == 'update')
                 value="{{$bond_student->entry_year}}"
                 @endif
                 >
-              <span class="icon left"><i class="fa-solid fa-box-open"></i></span>
+              <span class="icon left"><i class="fa-solid fa-right-to-bracket"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Ano de Saída</label>
+        <div class="field-body">
+          <div class="field flex flex-wrap">
+            <div class="control icons-left">
+                <input 
+                class="input w-56" 
+                type="number" 
+                name="exit_year" 
+                placeholder=""
+                @if($action == 'update')
+                value="{{$bond_student->entry_year}}"
+                @endif
+                >
+              <span class="icon left"><i class="fa-solid fa-right-from-bracket"></i></span>
             </div>
           </div>
         </div>
@@ -170,7 +192,35 @@
     let notification = document.querySelector('#notification');
 
     notification.classList.add('hidden');
-  } 
+  }
+
+  function uppercase(ev){
+    const input = ev.target;
+	  input.value = input.value.toUpperCase();
+  }
+
+  function less_space(ev){
+    const input = ev.target;
+	  input.value = input.value.replace(/( )+/g, ' ');
+  }
+
+  document.querySelector('#uppercase_student').addEventListener('keyup', (ev) => {
+    uppercase(ev);
+  });
+
+  document.querySelector('#uppercase_mother').addEventListener('keyup', (ev) => {
+    uppercase(ev);
+  });
+
+  document.querySelector('#uppercase_student').addEventListener('blur', (ev) => {
+    less_space(ev)
+  });
+
+  document.querySelector('#uppercase_mother').addEventListener('blur', (ev) => {
+    less_space(ev)
+  });
+
+
 </script>
 
 @endsection

@@ -13,7 +13,7 @@
 <section class="section main-section">
 
   <div class="flex justify-center">
-    <a href="{{route('setStoreStudent', ['id'=>$box->id])}}" class="p-5 button green">
+    <a href="{{route('setStoreStudent', ['id'=>$box->id])}}" class="p-5 button green mb-2">
       <span class="icon"><i class="fa-solid fa-boxes-stacked"></i></span> Adicionar {{$box->type == 'devendo' ? 'Aluno' : $box->type}}
     </a> 
   </div>
