@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div class="return">
+  <a href="{{route('viewBox', ['id'=>$box_id])}}" class="text-gray-500 font-bold m-2"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+</div>
+
 <section class="is-hero-bar">
   <div class="flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
     <h1 class="title">
@@ -40,7 +44,7 @@
     <form method="POST" action="{{route($route)}}" class="w-96">
       @csrf
       @if($action === "update")
-        <input type="hidden" value="{{$student->id}}" name="id">
+        <input type="hidden" value="{{$bond_student->id}}" name="id">
       @endif
       <input type="hidden" value="{{$box_id}}" name="box_id">
 

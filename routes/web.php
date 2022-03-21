@@ -21,5 +21,6 @@ Route::prefix('caixa')->group(function (){
 Route::prefix('aluno')->group(function (){
     Route::get('/adicionar/{id}', [StudentController::class, 'setStore'])->name('setStoreStudent');
     Route::post('/adicionar', [StudentController::class, 'store'])->name('storeStudent');
+    Route::get('/excluir/{id}', [StudentController::class, 'delete'])->name('deleteStudent');
 });
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Box;
 
+use function PHPUnit\Framework\isEmpty;
+
 class BoxController extends Controller
 {
     public function manageBoxes($id=null){
@@ -41,11 +43,17 @@ class BoxController extends Controller
 
         $box = Box::find($id);
 
-        if($box->delete()){
-            return redirect()->route('manageBoxes')->with('success', 'A caixa foi excluída com sucesso!');
-        }else{
+        $bond_students = $box->bond_students;
+
+        if(!$bond_students->isEmpty()){
+            dd('não está vazio');
+        }
+
+        if(!$box->delete()){
             return redirect()->route('manageBoxes')->with('error', 'Não foi possível excluir a caixa!');
         }
+
+        return redirect()->route('manageBoxes')->with('success', 'A caixa foi excluída com sucesso!');
     }
 
     public function update(Request $request){
@@ -73,6 +81,12 @@ class BoxController extends Controller
 
         $bond_students = $box->bond_students;
 
-        return view('box.viewBox', ['title'=>$title, 'bond_students'=>$bond_students, 'box'=>$box]);
+        if($box->type == 'aluno' || $box->type == 'devendo'){
+            return view('box.viewBox', ['title'=>$title, 'bond_students'=>$bond_students, 'box'=>$box]);
+        }else{
+            return view('box.viewBox', ['title'=>$title, 'bond_students'=>$bond_students, 'box'=>$box]);
+        }
+
+        
     }
 }

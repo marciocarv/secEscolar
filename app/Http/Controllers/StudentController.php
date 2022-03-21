@@ -16,6 +16,15 @@ class StudentController extends Controller
     }
 
     public function store(Request $request){
+
+        $request->validate([
+            'order'=>'required|numeric',
+            'name'=>'required',
+            'date_birth'=>'required',
+            'exit_year'=>'required|numeric',
+            'mother'=>'required',
+        ]);
+
         $student = new Student;
 
         $box = Box::find($request->box_id);
@@ -42,5 +51,17 @@ class StudentController extends Controller
         }
 
         return redirect()->route('viewBox', ['id'=>$box->id])->with('success', 'Aluno Salvo com sucesso!');
+    }
+
+    public function delete($id){
+        $bond_student = Bond_student::find($id);
+        $student = $bond_student->student;
+        $box = $bond_student->box;
+
+        if(!$student->delete()){
+            return redirect()->route('viewBox', ['id'=>$box->id])->with('error', 'Nâo foi possível excluir esse aluno');
+        }
+
+        return redirect()->route('viewBox', ['id'=>$box->id])->with('success', 'Aluno excluído com sucesso!');
     }
 }

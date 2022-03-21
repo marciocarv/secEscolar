@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div class="return">
+  <a href="{{route('inactive')}}" class="text-gray-500 font-bold m-2"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+</div>
+
 <section class="is-hero-bar">
   <div class="flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
     <h1 class="title">
@@ -52,6 +56,7 @@
                 type="text" 
                 name="description" 
                 placeholder="Descrição"
+                required
                 @if($action == 'update')
                 value="{{$boxUpdate->description}}"
                 @endif
@@ -101,6 +106,7 @@
           <span class="icon"><i class="mdi mdi-reload"></i></span>
         </a>
       </header>
+      
       <div class="card-content">
         <table>
           <thead>

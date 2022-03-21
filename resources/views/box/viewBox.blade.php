@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div class="return">
+  <a href="{{route('manageBoxes')}}" class="text-gray-500 font-bold m-2"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+</div>
+
 <section class="is-hero-bar">
   <div class="flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
     <h1 class="title">
@@ -96,7 +100,7 @@
                   <a title="Editar" href="{{route('setUpdateBox', ['id'=>$bond_student->id])}}" class="button small green" type="button">
                     <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span>
                   </a>
-                  <a title="Excluir" href="{{route('deleteBox', ['id'=>$bond_student->id])}}" class="button small red" type="button">
+                  <a title="Excluir" href="{{route('deleteStudent', ['id'=>$bond_student->id])}}" class="button small red" type="button">
                     <span class="icon"><i class="fa-solid fa-trash"></i></span>
                   </a>
                 </div>
