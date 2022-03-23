@@ -17,7 +17,7 @@
 <section class="section main-section">
 
   <div class="flex justify-center">
-    <a href="{{route('setStoreStudent', ['id'=>$box->id])}}" class="p-5 button green mb-2">
+    <a href="{{route($box->type=='servidor' ? 'setStoreBoxEmployee' : 'setStoreStudent', ['id'=>$box->id])}}" class="p-5 button green mb-2">
       <span class="icon"><i class="fa-solid fa-boxes-stacked"></i></span> Adicionar {{$box->type == 'devendo' ? 'Aluno' : $box->type}}
     </a> 
   </div>
@@ -76,38 +76,35 @@
           </tr>
           </thead>
           <tbody>
-            @foreach($bond_students as $bond_student)
+            @foreach($bonds as $bond)
             <tr class="uppercase">
               <td class="checkbox-cell">
                 <label class="checkbox">
-                  <input name="id_box" value="{{$bond_student->id}}" type="checkbox" >
+                  <input name="id_box" value="{{$bond->id}}" type="checkbox" >
                   <span class="check"></span>
                 </label>
               </td>
-              <td data-label="Ordem">{{$bond_student->order}}</td>
-              <td data-label="Nome">{{$bond_student->student->name}}</td>
-              <td data-label="Nome">{{$bond_student->student->date_birth->format('d/m/Y')}}</td>
-              <td data-label="Nome">{{$bond_student->student->mother}}</td>
-              <td data-label="Nome">{{$bond_student->entry_year}} - {{$bond_student->exit_year}} </td>
+              <td data-label="Ordem">{{$bond->order}}</td>
+              <td data-label="Nome">{{$box->type == 'servidor' ? $bond->employee->name : $bond->student->name}}</td>
+              <td data-label="Nome">{{$box->type == 'servidor' ? $bond->employee->date_birth->format('d/m/Y') : $bond->student->date_birth->format('d/m/Y')}}</td>
+              <td data-label="Nome">{{$box->type == 'servidor' ? $bond->employee->mother : $bond->student->mother}}</td>
+              <td data-label="Nome">{{$bond->entry_year}} - {{$bond->exit_year}} </td>
               <td data-label="Situação">
-                <small class="text-gray-500" title="{{$bond_student->status}}">{{$bond_student->status}}</small>
+                <small class="text-gray-500" title="{{$bond->status}}">{{$bond->status}}</small>
               </td>
               <td class="actions-cell">
                 <div class="buttons right nowrap">
-                  <a title="Visualizar" href="{{route('viewBox', ['id'=>$bond_student->id])}}" class="button small blue" type="button">
-                    <span class="icon"><i class="fa-solid fa-eye"></i></span>
-                  </a>
-                  <a title="Editar" href="{{route('setUpdateBox', ['id'=>$bond_student->id])}}" class="button small green" type="button">
+                  <a title="Editar" href="{{route($box->type == 'servidor' ? 'setUpdateBoxEmployee' : 'setUpdateStudent', ['id'=>$bond->id])}}" class="button small green" type="button">
                     <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span>
                   </a>
-                  <a title="Excluir" href="{{route('deleteStudent', ['id'=>$bond_student->id])}}" class="button small red" type="button">
+                  <a title="Excluir" href="{{route($box->type == 'servidor' ? 'deleteEmployee' : 'deleteStudent', ['id'=>$bond->id])}}" class="button small red" type="button">
                     <span class="icon"><i class="fa-solid fa-trash"></i></span>
                   </a>
                 </div>
               </td>
             </tr>
             @endforeach
-            @if($bond_students->isEmpty())
+            @if($bonds->isEmpty())
             <tr>
               <td data-label="Sem caixas" colspan="7" class="text-center">
                 Sem registros

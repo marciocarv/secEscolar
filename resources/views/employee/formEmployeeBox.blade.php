@@ -44,8 +44,8 @@
     <form method="POST" action="{{route($route)}}" class="w-96">
       @csrf
       @if($action === "update")
-        <input type="hidden" value="{{$bond_student->id}}" name="bond_student_id">
-        <input type="hidden" value="{{$student->id}}" name="student_id">
+        <input type="hidden" value="{{$bond_employee->id}}" name="bond_student_id">
+        <input type="hidden" value="{{$employee->id}}" name="student_id">
       @endif
       <input type="hidden" value="{{$box_id}}" name="box_id">
 
@@ -60,7 +60,7 @@
                 name="order" 
                 placeholder="Ordem"
                 @if($action == 'update')
-                value="{{$bond_student->order}}"
+                value="{{$bond_employee->order}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-list"></i></span>
@@ -81,7 +81,7 @@
                 id="uppercase_student"
                 placeholder="Nome"
                 @if($action == 'update')
-                value="{{$student->name}}"
+                value="{{$employee->name}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-id-card"></i></span>
@@ -101,7 +101,7 @@
                 name="date_birth" 
                 placeholder=""
                 @if($action == 'update')
-                value="{{$student->date_birth->format('Y-m-d')}}"
+                value="{{$employee->date_birth->format('Y-m-d')}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-calendar-days"></i></span>
@@ -122,7 +122,7 @@
                 id="uppercase_mother"
                 placeholder="Nome da mãe"
                 @if($action == 'update')
-                value="{{$student->mother}}"
+                value="{{$employee->mother}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-person-breastfeeding"></i></span>
@@ -142,7 +142,7 @@
                 name="entry_year" 
                 placeholder=""
                 @if($action == 'update')
-                value="{{$bond_student->entry_year}}"
+                value="{{$bond_employee->entry_year}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-right-to-bracket"></i></span>
@@ -162,7 +162,7 @@
                 name="exit_year" 
                 placeholder=""
                 @if($action == 'update')
-                value="{{$bond_student->exit_year}}"
+                value="{{$bond_employee->exit_year}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-right-from-bracket"></i></span>

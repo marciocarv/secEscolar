@@ -14,4 +14,12 @@ class Bond_employee extends Model
         'entry_year',
         'exit_year'
     ];
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function box(){
+        return $this->belognsTo(Box::class);
+    }
 }

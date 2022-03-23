@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StudentController;
@@ -22,5 +23,14 @@ Route::prefix('aluno')->group(function (){
     Route::get('/adicionar/{id}', [StudentController::class, 'setStore'])->name('setStoreStudent');
     Route::post('/adicionar', [StudentController::class, 'store'])->name('storeStudent');
     Route::get('/excluir/{id}', [StudentController::class, 'delete'])->name('deleteStudent');
+    Route::get('/editar/{id}', [StudentController::class, 'setUpdate'])->name('setUpdateStudent');
+    Route::post('/editar', [StudentController::class, 'update'])->name('updateStudent');
 });
 
+Route::prefix('servidor')->group(function(){
+    Route::get('/adicionar/{id}', [EmployeeController::class, 'setStoreBox'])->name('setStoreBoxEmployee');
+    Route::post('/adicionar-caixa', [EmployeeController::class, 'storeBox'])->name('storeBoxEmployee');
+    Route::get('/excluir/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
+    Route::get('/editar-caixa/{id}', [EmployeeController::class, 'setUpdateBoxEmployee'])->name('setUpdateBoxEmployee');
+    Route::post('/editar-caixa', [EmployeeController::class, 'updateBoxEmployee'])->name('updateBoxEmployee');
+});

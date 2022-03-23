@@ -71,7 +71,7 @@
           <div class="flex items-center justify-between">
             <div class="widget-label">
               <h2 class="font-bold">
-                Caixas Devendo Histórico
+                Caixas Devendo Histórico / Matrículas Canceladas
               </h2>
             </div>
             <span class="text-red-500 icon widget-icon"><i class="fa-solid fa-user-graduate"></i></span>

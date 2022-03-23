@@ -54,7 +54,8 @@
               <input 
                 class="input" 
                 type="text" 
-                name="description" 
+                name="description"
+                id="description"
                 placeholder="Descrição"
                 required
                 @if($action == 'update')
@@ -75,7 +76,7 @@
               <option value="1">Escolha uma Opção</option>
               <option value="aluno" {{$boxUpdate->type == 'Aluno' ? 'selected':''}}>Aluno</option>
               <option value="servidor" {{$boxUpdate->type == 'Servidor' ? 'selected':''}}>Servidor</option>
-              <option value="devendo" {{$boxUpdate->type == 'devendo' ? 'selected':''}}>Devendo Histórico</option>
+              <option value="devendo" {{$boxUpdate->type == 'devendo' ? 'selected':''}}>Devendo Histórico / Matrícula Cancelada</option>
             </select>
           </div>
         </div>
@@ -167,9 +168,7 @@
 
   </div>
 </div>
-
   
-          
 @endsection
 
 @section('script')
@@ -178,7 +177,16 @@
     let notification = document.querySelector('#notification');
 
     notification.classList.add('hidden');
-  } 
+  }
+
+  function uppercase(ev){
+    const input = ev.target;
+	  input.value = input.value.toUpperCase();
+  }
+
+  document.querySelector('#description').addEventListener('keyup', (ev) => {
+    uppercase(ev);
+  });
 </script>
 
 @endsection

@@ -20,7 +20,7 @@ class BoxController extends Controller
         if($id===null){
             return view('box.manageBoxes', ['title'=>$title, 'route'=>'storeBox', 'boxes'=>$boxes, 'action'=>'store', 'boxUpdate'=>$box]);
         }else{
-            $box = Box::find($id);
+            $box = Box::findOrFail($id);
             return view('box.manageBoxes', ['title'=>$title, 'route'=>'updateBox', 'boxes'=>$boxes, 'action'=>'update', 'boxUpdate'=>$box]);
         }
 
@@ -41,12 +41,15 @@ class BoxController extends Controller
 
     public function delete($id){
 
-        $box = Box::find($id);
+        $box = Box::findOrFail($id);
 
         $bond_students = $box->bond_students;
 
         if(!$bond_students->isEmpty()){
-            dd('não está vazio');
+            $studentController = new StudentController;
+            foreach($bond_students as $bond_student){
+                $studentController->deleteLoose($bond_student->student->id);
+            }
         }
 
         if(!$box->delete()){
@@ -63,7 +66,7 @@ class BoxController extends Controller
             'type'=>'required|min:2'
         ]);
 
-        $box = Box::find($request->id);
+        $box = Box::findOrFail($request->id);
 
         $box->description = $request->description;
         $box->type = $request->type;
@@ -76,17 +79,17 @@ class BoxController extends Controller
     }
 
     public function view($id){
-        $box = Box::find($id);
+        $box = Box::findOrFail($id);
+
         $title = "Gerenciar Caixa ".$box->description;
 
-        $bond_students = $box->bond_students;
-
         if($box->type == 'aluno' || $box->type == 'devendo'){
-            return view('box.viewBox', ['title'=>$title, 'bond_students'=>$bond_students, 'box'=>$box]);
+            $bond_students = $box->bond_students;
+            return view('box.viewBox', ['title'=>$title, 'bonds'=>$bond_students, 'box'=>$box]);
         }else{
-            return view('box.viewBox', ['title'=>$title, 'bond_students'=>$bond_students, 'box'=>$box]);
+            $bond_employees = $box->bond_employees;
+            return view('box.viewBox', ['title'=>$title, 'bonds'=>$bond_employees, 'box'=>$box]);
         }
 
-        
     }
 }
