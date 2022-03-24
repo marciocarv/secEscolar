@@ -44,8 +44,8 @@
     <form method="POST" action="{{route($route)}}" class="w-96">
       @csrf
       @if($action === "update")
-        <input type="hidden" value="{{$bond_employee->id}}" name="bond_student_id">
-        <input type="hidden" value="{{$employee->id}}" name="student_id">
+        <input type="hidden" value="{{$bond_employee->id}}" name="bond_employee_id">
+        <input type="hidden" value="{{$employee->id}}" name="employee_id">
       @endif
       <input type="hidden" value="{{$box_id}}" name="box_id">
 

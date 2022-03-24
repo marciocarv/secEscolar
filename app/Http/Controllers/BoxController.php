@@ -92,4 +92,18 @@ class BoxController extends Controller
         }
 
     }
+
+    public function show($type){
+        $box = new Box;
+
+        $boxes = $box->boxForType($type);
+
+        $title = 'CAIXAS';
+
+        if($type != 'Aluno' && $type != 'Servidor' && $type != 'devendo'){
+            return redirect()->route('inactive');
+        }
+
+        return view('box.showBoxes', ['boxes'=>$boxes, 'title'=>$title]);
+    }
 }

@@ -13,7 +13,7 @@ class Bond_student extends Model
         'order',
         'status',
         'entry_year',
-        'exit_year'
+        'exit_year',
     ];
 
     public function student(){

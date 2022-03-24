@@ -17,6 +17,7 @@ Route::prefix('caixa')->group(function (){
     Route::get('/editar/{id}', [BoxController::class, 'manageBoxes'])->name('setUpdateBox');
     Route::post('/editar', [BoxController::class, 'update'])->name('updateBox');
     Route::get('/visualizar/{id}', [BoxController::class, 'view'])->name('viewBox');
+    Route::get('/mostrar/{type}', [BoxController::class, 'show'])->name('showBox');
 });
 
 Route::prefix('aluno')->group(function (){
@@ -32,5 +33,5 @@ Route::prefix('servidor')->group(function(){
     Route::post('/adicionar-caixa', [EmployeeController::class, 'storeBox'])->name('storeBoxEmployee');
     Route::get('/excluir/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
     Route::get('/editar-caixa/{id}', [EmployeeController::class, 'setUpdateBoxEmployee'])->name('setUpdateBoxEmployee');
-    Route::post('/editar-caixa', [EmployeeController::class, 'updateBoxEmployee'])->name('updateBoxEmployee');
+    Route::post('/editar-caixa', [EmployeeController::class, 'updateBox'])->name('updateBoxEmployee');
 });

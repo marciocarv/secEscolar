@@ -20,6 +20,6 @@ class Bond_employee extends Model
     }
 
     public function box(){
-        return $this->belognsTo(Box::class);
+        return $this->belongsTo(Box::class);
     }
 }

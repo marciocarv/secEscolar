@@ -37,7 +37,7 @@
   </div>
 
   <div class="grid grid-cols-1 gap-6 my-6 md:grid-cols-3">
-    <a href="#">
+    <a href="{{route('showBox', ['type'=>'Aluno'])}}">
       <div class="card shadow-md border-gray-300 hover:bg-gray-200">
         <div class="card-content">
           <div class="flex items-center justify-between">
@@ -51,7 +51,7 @@
         </div>
       </div>
     </a>
-    <a href="#">
+    <a href="{{route('showBox', ['type'=>'Servidor'])}}">
       <div class="card shadow-md border-gray-300 hover:bg-gray-200">
           <div class="card-content">
             <div class="flex items-center justify-between">
@@ -65,7 +65,7 @@
           </div>
       </div>
     </a>
-    <a href="#">
+    <a href="{{route('showBox', ['type'=>'devendo'])}}">
       <div class="card shadow-md border-gray-300 hover:bg-gray-200">
         <div class="card-content">
           <div class="flex items-center justify-between">

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="return">
-  <a href="{{route('inactive')}}" class="text-gray-500 font-bold m-2"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+  <a href="{{route('inactive')}}" class="text-gray-500 font-bold m-2 hover:text-blue-800"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
 </div>
 
 <section class="is-hero-bar">
@@ -134,7 +134,7 @@
                 </label>
               </td>
               <td data-label="Descrição">{{$box->description}}</td>
-              <td data-label="Tipo">{{$box->type == 'devendo' ? 'Devendo Histórico' : $box->type}}</td>
+              <td data-label="Tipo">{{$box->type == 'devendo' ? 'Devendo Histórico / Matrículas Canceladas' : $box->type}}</td>
               <td data-label="Created">
                 <small class="text-gray-500" title="{{$box->created_at->format('d/m/Y')}}">{{$box->created_at->format('d/m/Y')}}</small>
               </td>

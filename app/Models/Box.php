@@ -25,4 +25,8 @@ class Box extends Model
     public function bond_employees(){
         return $this->hasMany(Bond_employee::class)->orderBy('order');
     }
+
+    public function boxForType($type){
+        return Box::where('type', $type)->orderBy('description')->get();
+    }
 }

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="return">
-  <a href="{{route('manageBoxes')}}" class="text-gray-500 font-bold m-2"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+  <a href="{{route('manageBoxes')}}" class="text-gray-500 font-bold m-2 hover:text-blue-800"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
 </div>
 
 <section class="is-hero-bar">
