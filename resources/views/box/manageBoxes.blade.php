@@ -74,8 +74,8 @@
           <div class="select">
             <select name="type">
               <option value="1">Escolha uma Opção</option>
-              <option value="aluno" {{$boxUpdate->type == 'Aluno' ? 'selected':''}}>Aluno</option>
-              <option value="servidor" {{$boxUpdate->type == 'Servidor' ? 'selected':''}}>Servidor</option>
+              <option value="Aluno" {{$boxUpdate->type == 'Aluno' ? 'selected':''}}>Aluno</option>
+              <option value="Servidor" {{$boxUpdate->type == 'Servidor' ? 'selected':''}}>Servidor</option>
               <option value="devendo" {{$boxUpdate->type == 'devendo' ? 'selected':''}}>Devendo Histórico / Matrícula Cancelada</option>
             </select>
           </div>

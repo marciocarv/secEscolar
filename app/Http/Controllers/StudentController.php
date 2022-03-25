@@ -58,6 +58,14 @@ class StudentController extends Controller
         $student = $bond_student->student;
         $box = $bond_student->box;
 
+        if(!$bond_student->delete()){
+            return redirect()->route('viewBox', ['id'=>$box->id])->with('error', 'Nâo foi possível excluir esse aluno!');
+        }
+
+        if(!$student->bond_students->isEmpty()){
+            return redirect()->route('viewBox', ['id'=>$box->id])->with('success', 'Aluno excluído com sucesso!');
+        }
+
         if(!$student->delete()){
             return redirect()->route('viewBox', ['id'=>$box->id])->with('error', 'Nâo foi possível excluir esse aluno!');
         }
@@ -124,5 +132,17 @@ class StudentController extends Controller
 
         return redirect()->route('viewBox', ['id'=>$box->id])->with('success', 'Aluno Alterado com sucesso!');
 
+    }
+
+    public function rescue($id){
+        $bond_student = Bond_student::findOrfail($id);
+
+        $bond_student->status = 'RESGATADO - '.now()->format('d/m/Y');
+        
+        if(!$bond_student->save()){
+            return redirect()->route('viewBox', ['id'=>$bond_student->box_id])->with('error', 'Não foi possível resgatar esse aluno!');
+        }
+
+        return redirect()->route('viewBox', ['id'=>$bond_student->box_id])->with('success', 'Aluno resgatado com sucesso!');
     }
 }

@@ -41,4 +41,8 @@ class Employee extends Model
         'date_birth',
         'rg_expedition'
     ];
+
+    public function bond_employees(){
+        $this->hasMany(Bond_employee::class);
+    }
 }

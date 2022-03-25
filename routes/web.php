@@ -26,6 +26,7 @@ Route::prefix('aluno')->group(function (){
     Route::get('/excluir/{id}', [StudentController::class, 'delete'])->name('deleteStudent');
     Route::get('/editar/{id}', [StudentController::class, 'setUpdate'])->name('setUpdateStudent');
     Route::post('/editar', [StudentController::class, 'update'])->name('updateStudent');
+    Route::get('/resgatar/{id}', [StudentController::class, 'rescue'])->name('rescueStudent');
 });
 
 Route::prefix('servidor')->group(function(){

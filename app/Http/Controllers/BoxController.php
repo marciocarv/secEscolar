@@ -83,7 +83,8 @@ class BoxController extends Controller
 
         $title = "Gerenciar Caixa ".$box->description;
 
-        if($box->type == 'aluno' || $box->type == 'devendo'){
+
+        if($box->type == 'Aluno' || $box->type == 'devendo'){
             $bond_students = $box->bond_students;
             return view('box.viewBox', ['title'=>$title, 'bonds'=>$bond_students, 'box'=>$box]);
         }else{
@@ -106,4 +107,5 @@ class BoxController extends Controller
 
         return view('box.showBoxes', ['boxes'=>$boxes, 'title'=>$title]);
     }
+
 }

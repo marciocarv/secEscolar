@@ -13,7 +13,7 @@
 <section class="section main-section">
 
   <div class="flex justify-center">
-    <a href="{{route('manageBoxes')}}" class="p-5 button green"><span class="icon">
+    <a href="{{route('manageBoxes')}}" class="p-4 button bg-teal-900 text-white font-bold shadow hover:bg-teal-700"><span class="icon">
       <i class="fa-solid fa-boxes-stacked"></i></span> Gerenciar Caixas
     </a> 
   </div>
@@ -28,7 +28,7 @@
       </div>
       <div class="field grouped">
         <div class="control">
-          <button type="submit" class="button green">
+          <button type="submit" class="button bg-teal-900 text-white font-bold shadow hover:bg-teal-700">
             <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span> Pesquisar
           </button>
         </div>

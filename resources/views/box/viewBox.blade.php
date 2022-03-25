@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="return">
-  <a href="{{route('manageBoxes')}}" class="text-gray-500 font-bold m-2 hover:text-blue-800"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+  <a href="{{route('showBox', ['type'=>$box->type])}}" class="text-gray-500 font-bold m-2 hover:text-blue-800"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
 </div>
 
 <section class="is-hero-bar">
@@ -17,9 +17,23 @@
 <section class="section main-section">
 
   <div class="flex justify-center">
-    <a href="{{route($box->type=='servidor' ? 'setStoreBoxEmployee' : 'setStoreStudent', ['id'=>$box->id])}}" class="p-5 button green mb-2">
-      <span class="icon"><i class="fa-solid fa-boxes-stacked"></i></span> Adicionar {{$box->type == 'devendo' ? 'Aluno' : $box->type}}
-    </a> 
+    <a href="{{route($box->type=='Servidor' ? 'setStoreBoxEmployee' : 'setStoreStudent', ['id'=>$box->id])}}" 
+      class="p-4 button bg-teal-900 text-white font-bold shadow hover:bg-teal-700 m-2">
+      <span class="icon">
+        @if($box->type == 'Servidor')
+        <i class="fa-brands fa-black-tie"></i>
+        @else
+        <i class="fa-solid fa-graduation-cap"></i>
+        @endif
+      </span> Adicionar {{$box->type == 'devendo' ? 'Aluno' : $box->type}}
+    </a>
+
+    <a href="{{route($box->type=='Servidor' ? 'setStoreBoxEmployee' : 'setStoreStudent', ['id'=>$box->id])}}" 
+      class="p-4 button bg-teal-900 text-white font-bold shadow hover:bg-teal-700 m-2">
+      <span class="icon">
+        <i class="fa-solid fa-file-lines"></i>
+      </span> Imprimir Lista
+    </a>
   </div>
 
   @if(session('success'))
@@ -85,20 +99,38 @@
                 </label>
               </td>
               <td data-label="Ordem">{{$bond->order}}</td>
-              <td data-label="Nome">{{$box->type == 'servidor' ? $bond->employee->name : $bond->student->name}}</td>
-              <td data-label="Nome">{{$box->type == 'servidor' ? $bond->employee->date_birth->format('d/m/Y') : $bond->student->date_birth->format('d/m/Y')}}</td>
-              <td data-label="Nome">{{$box->type == 'servidor' ? $bond->employee->mother : $bond->student->mother}}</td>
+              <td data-label="Nome">{{$box->type == 'Servidor' ? $bond->employee->name : $bond->student->name}}</td>
+              <td data-label="Nome">{{$box->type == 'Servidor' ? $bond->employee->date_birth->format('d/m/Y') : $bond->student->date_birth->format('d/m/Y')}}</td>
+              <td data-label="Nome">{{$box->type == 'Servidor' ? $bond->employee->mother : $bond->student->mother}}</td>
               <td data-label="Nome">{{$bond->entry_year}} - {{$bond->exit_year}} </td>
               <td data-label="Situação">
-                <small class="text-gray-500" title="{{$bond->status}}">{{$bond->status}}</small>
+                <small class="font-bold {{$bond->status == 'ARQUIVADO' ? 'text-gray-500' : 'text-blue-500'}}" title="{{$bond->status}}">{{$bond->status}}</small>
               </td>
               <td class="actions-cell">
                 <div class="buttons right nowrap">
-                  <a title="Editar" href="{{route($box->type == 'servidor' ? 'setUpdateBoxEmployee' : 'setUpdateStudent', ['id'=>$bond->id])}}" class="button small green" type="button">
+                  <a title="Editar" 
+                    href="{{route($box->type == 'Servidor' ? 'setUpdateBoxEmployee' : 'setUpdateStudent', ['id'=>$bond->id])}}" 
+                    class="button small green" 
+                    type="button">
                     <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span>
                   </a>
-                  <a title="Excluir" href="{{route($box->type == 'servidor' ? 'deleteEmployee' : 'deleteStudent', ['id'=>$bond->id])}}" class="button small red" type="button">
+                  <a title="Excluir" 
+                    href="{{route($box->type == 'Servidor' ? 'deleteEmployee' : 'deleteStudent', ['id'=>$bond->id])}}" 
+                    class="button small red" 
+                    type="button">
                     <span class="icon"><i class="fa-solid fa-trash"></i></span>
+                  </a>
+                  <a title="Transferir" 
+                    href="{{route($box->type == 'Servidor' ? 'setUpdateBoxEmployee' : 'setUpdateStudent', ['id'=>$bond->id])}}" 
+                    class="{{$bond->status == 'ARQUIVADO' ? 'button small blue' : 'button small bg-gray-400 pointer-events-none'}}" 
+                    type="button">
+                    <span class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
+                  </a>
+                  <a title="Resgatar" 
+                    href="{{route($box->type == 'Servidor' ? 'deleteEmployee' : 'rescueStudent', ['id'=>$bond->id])}}" 
+                    class="{{$bond->status == 'ARQUIVADO' ? 'button small text-white bg-black' : 'button small bg-gray-400 pointer-events-none'}}" 
+                    type="button">
+                    <span class="icon"><i class="fa-solid fa-reply"></i></span>
                   </a>
                 </div>
               </td>
