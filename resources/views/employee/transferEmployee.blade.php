@@ -3,7 +3,10 @@
 @section('content')
 
 <div class="return">
-  <a href="{{route('viewBox', ['id'=>$bond_student->box_id])}}" class="text-gray-500 font-bold m-2 hover:text-blue-800"> <i class="fa-solid fa-arrow-left"></i> Voltar</a>
+  <a href="{{route('viewBox', ['id'=>$bond_employee->box_id])}}" class="text-gray-500 font-bold m-2 hover:text-blue-800">
+    <i class="fa-solid fa-arrow-left"></i> 
+    Voltar
+  </a>
 </div>
 
 <section class="is-hero-bar">
@@ -41,17 +44,17 @@
   @endif
 
   <div>
-    <form method="POST" action="{{route('transferStudent')}}" class="w-96">
+    <form method="POST" action="{{route('transferEmployee')}}" class="w-96">
       @csrf
 
-      <input type="hidden" value="{{$bond_student->id}}" name="bond_student_id">
-      <input type="hidden" value="{{$student->id}}" name="student_id">
+      <input type="hidden" value="{{$bond_employee->id}}" name="bond_employee_id">
+      <input type="hidden" value="{{$employee->id}}" name="employee_id">
 
       <div class="field">
         <label class="label">Nome</label>
         <div class="field-body">
           <div class="field">
-            {{$student->name}}
+            {{$employee->name}}
           </div>
         </div>
       </div>
@@ -60,7 +63,7 @@
         <label class="label">Mãe</label>
         <div class="field-body">
           <div class="field">
-            {{$student->mother}}
+            {{$employee->mother}}
           </div>
         </div>
       </div>
@@ -69,7 +72,7 @@
         <label class="label">Data de Nascimento</label>
         <div class="field-body">
           <div class="field">
-            {{$student->date_birth->format('d/m/Y')}}
+            {{$employee->date_birth->format('d/m/Y')}}
           </div>
         </div>
       </div>

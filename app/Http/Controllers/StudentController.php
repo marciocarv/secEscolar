@@ -145,4 +145,49 @@ class StudentController extends Controller
 
         return redirect()->route('viewBox', ['id'=>$bond_student->box_id])->with('success', 'Aluno resgatado com sucesso!');
     }
+
+    public function setTransfer($id){
+        $bond_student = Bond_student::findOrFail($id);
+
+        $student = $bond_student->student;
+
+        $box = new Box;
+
+        $title = 'Trasferir ALuno';
+
+        $boxesDevendo = $box->boxForType('devendo');
+
+        $boxesStudent = $box->boxForType('Aluno');
+
+        $boxes = $boxesStudent->merge($boxesDevendo);
+
+        return view('student.transferStudent', ['student'=>$student, 'boxes'=>$boxes, 'title'=>$title, 'bond_student'=>$bond_student]);
+    }
+
+    public function transfer(Request $request){
+        $student = Student::findOrFail($request->student_id);
+
+        $formerBond_student = Bond_student::findOrFail($request->bond_student_id);
+
+        $box = Box::findOrFail($request->box_id);
+
+        $bond_student = new Bond_student;
+        $bond_student->student_id = $student->id;
+        $bond_student->box_id = $box->id;
+        $bond_student->order = $request->order;
+        $bond_student->entry_year = $request->entry_year;
+        $bond_student->exit_year = $request->exit_year;
+
+        if(!$bond_student->save()){
+            return redirect()->route('viewBox', ['id'=>$formerBond_student->box_id])->with('error', 'Não foi possível transferir o aluno!');
+        }
+
+        $formerBond_student->status = "TRANSFERIDO - ".now()->format('d/m/Y');
+
+        $formerBond_student->save();
+
+        return redirect()->route('viewBox', ['id'=>$box->id])
+            ->with('success', 'Aluno transferido da caixa '.$formerBond_student->box->description.' para a caixa '.$box->description.'!');
+
+    }
 }

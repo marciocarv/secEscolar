@@ -27,6 +27,8 @@ Route::prefix('aluno')->group(function (){
     Route::get('/editar/{id}', [StudentController::class, 'setUpdate'])->name('setUpdateStudent');
     Route::post('/editar', [StudentController::class, 'update'])->name('updateStudent');
     Route::get('/resgatar/{id}', [StudentController::class, 'rescue'])->name('rescueStudent');
+    Route::get('/trasferir/{id}', [StudentController::class, 'setTransfer'])->name('setTransferStudent');
+    Route::post('/transferir', [StudentController::class, 'transfer'])->name('transferStudent');
 });
 
 Route::prefix('servidor')->group(function(){
@@ -35,4 +37,7 @@ Route::prefix('servidor')->group(function(){
     Route::get('/excluir/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
     Route::get('/editar-caixa/{id}', [EmployeeController::class, 'setUpdateBoxEmployee'])->name('setUpdateBoxEmployee');
     Route::post('/editar-caixa', [EmployeeController::class, 'updateBox'])->name('updateBoxEmployee');
+    Route::get('/resgatar/{id}', [EmployeeController::class, 'rescue'])->name('rescueEmployee');
+    Route::get('/trasferir/{id}', [EmployeeController::class, 'setTransfer'])->name('setTransferEmployee');
+    Route::post('/transferir', [EmployeeController::class, 'transfer'])->name('transferEmployee');
 });

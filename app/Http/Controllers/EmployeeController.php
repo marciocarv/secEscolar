@@ -114,4 +114,46 @@ class EmployeeController extends Controller
         return redirect()->route('viewBox', ['id'=>$box->id])->with('success', 'Servidor Alterado com sucesso!');
 
     }
+
+    public function setTransfer($id){
+        $bond_employee = Bond_employee::findOrFail($id);
+
+        $employee = $bond_employee->employee;
+
+        $box = new Box;
+
+        $title = 'Trasferir Servidor';
+
+        $boxes = $box->boxForType('Servidor');
+
+
+        return view('employee.transferEmployee', ['employee'=>$employee, 'boxes'=>$boxes, 'title'=>$title, 'bond_employee'=>$bond_employee]);
+    }
+
+    public function transfer(Request $request){
+        $employee = Employee::findOrFail($request->employee_id);
+
+        $formerBond_employee = Bond_employee::findOrFail($request->bond_employee_id);
+
+        $box = Box::findOrFail($request->box_id);
+
+        $bond_employee = new Bond_employee;
+        $bond_employee->employee_id = $employee->id;
+        $bond_employee->box_id = $box->id;
+        $bond_employee->order = $request->order;
+        $bond_employee->entry_year = $request->entry_year;
+        $bond_employee->exit_year = $request->exit_year;
+
+        if(!$bond_employee->save()){
+            return redirect()->route('viewBox', ['id'=>$formerBond_employee->box_id])->with('error', 'Não foi possível transferir o aluno!');
+        }
+
+        $formerBond_employee->status = "TRANSFERIDO - ".now()->format('d/m/Y');
+
+        $formerBond_employee->save();
+
+        return redirect()->route('viewBox', ['id'=>$box->id])
+            ->with('success', 'Aluno transferido da caixa '.$formerBond_employee->box->description.' para a caixa '.$box->description.'!');
+
+    }
 }

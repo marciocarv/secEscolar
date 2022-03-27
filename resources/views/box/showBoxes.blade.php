@@ -66,14 +66,14 @@
     @endif
 
     @foreach($boxes as $box)
-    <div class="w-full lg:w-6/12 xl:w-2/12 m-2">
+    <div class="w-full lg:w-6/12 {{$box->type == 'devendo' ? 'xl:w-3/12' : 'xl:w-2/12' }} m-2">
       <div class="relative flex flex-col min-w-0 break-words rounded mb-6 xl:mb-0 shadow-lg bg-teal-900 hover:bg-teal-700">
         <a href="{{route('viewBox', ['id'=>$box->id])}}" class="">
         <div class="flex-auto p-4">
           <div class="flex flex-wrap">
             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
               <span class="font-bold uppercase text-sm text-white">
-              {{$box->description}}
+              Caixa {{$box->description}}
               </span>
             </div>
             <div class="relative w-auto pl-4 flex-initial">

@@ -121,13 +121,13 @@
                     <span class="icon"><i class="fa-solid fa-trash"></i></span>
                   </a>
                   <a title="Transferir" 
-                    href="{{route($box->type == 'Servidor' ? 'setUpdateBoxEmployee' : 'setUpdateStudent', ['id'=>$bond->id])}}" 
+                    href="{{route($box->type == 'Servidor' ? 'setTransferEmployee' : 'setTransferStudent', ['id'=>$bond->id])}}" 
                     class="{{$bond->status == 'ARQUIVADO' ? 'button small blue' : 'button small bg-gray-400 pointer-events-none'}}" 
                     type="button">
                     <span class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
                   </a>
                   <a title="Resgatar" 
-                    href="{{route($box->type == 'Servidor' ? 'deleteEmployee' : 'rescueStudent', ['id'=>$bond->id])}}" 
+                    href="{{route($box->type == 'Servidor' ? 'rescueEmployee' : 'rescueStudent', ['id'=>$bond->id])}}" 
                     class="{{$bond->status == 'ARQUIVADO' ? 'button small text-white bg-black' : 'button small bg-gray-400 pointer-events-none'}}" 
                     type="button">
                     <span class="icon"><i class="fa-solid fa-reply"></i></span>
