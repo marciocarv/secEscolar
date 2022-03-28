@@ -27,6 +27,6 @@ class Box extends Model
     }
 
     public function boxForType($type){
-        return Box::where('type', $type)->orderBy('description')->get();
+        return Box::where('type', $type)->orderBy('id')->get();
     }
 }
