@@ -108,4 +108,21 @@ class BoxController extends Controller
         return view('box.showBoxes', ['boxes'=>$boxes, 'title'=>$title]);
     }
 
+    public function print($id){
+        $box = Box::findOrFail($id);
+        $title = 'Imprimir Caixa';
+
+        if($box->type == 'Servidor'){
+
+            $bonds = $box->bond_employees;
+
+            return view('box.print', ['bonds'=>$bonds, 'box'=>$box, 'title'=>$title]);
+        }else{
+            $bonds = $box->bond_students;
+
+            return view('box.print', ['bonds'=>$bonds, 'box'=>$box, 'title'=>$title]);
+        }
+
+    }
+
 }

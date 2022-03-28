@@ -28,7 +28,7 @@
       </span> Adicionar {{$box->type == 'devendo' ? 'Aluno' : $box->type}}
     </a>
 
-    <a href="{{route($box->type=='Servidor' ? 'setStoreBoxEmployee' : 'setStoreStudent', ['id'=>$box->id])}}" 
+    <a href="{{route('printBox', ['id'=>$box->id])}}" 
       class="p-4 button bg-teal-900 text-white font-bold shadow hover:bg-teal-700 m-2">
       <span class="icon">
         <i class="fa-solid fa-file-lines"></i>

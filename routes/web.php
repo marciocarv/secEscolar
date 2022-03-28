@@ -18,6 +18,7 @@ Route::prefix('caixa')->group(function (){
     Route::post('/editar', [BoxController::class, 'update'])->name('updateBox');
     Route::get('/visualizar/{id}', [BoxController::class, 'view'])->name('viewBox');
     Route::get('/mostrar/{type}', [BoxController::class, 'show'])->name('showBox');
+    Route::get('/imprimir/{id}', [BoxController::class, 'print'])->name('printBox');
 });
 
 Route::prefix('aluno')->group(function (){
