@@ -182,7 +182,7 @@ class StudentController extends Controller
             return redirect()->route('viewBox', ['id'=>$formerBond_student->box_id])->with('error', 'Não foi possível transferir o aluno!');
         }
 
-        $formerBond_student->status = "TRANSFERIDO - ".now()->format('d/m/Y');
+        $formerBond_student->status = "TRANSFERIDO - CX ".$box->description." ".now()->format('d/m/Y');
 
         $formerBond_student->save();
 

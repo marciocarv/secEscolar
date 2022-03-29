@@ -5,10 +5,13 @@ use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TesteController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/inativo', [IndexController::class, 'inactive'])->name('inactive');
+
+Route::get('/teste', [TesteController::class, 'inserir'])->name('teste');
 
 Route::prefix('caixa')->group(function (){
     Route::get('/gerenciar-caixas', [BoxController::class, 'manageBoxes'])->name('manageBoxes');
