@@ -125,4 +125,12 @@ class BoxController extends Controller
 
     }
 
+    public function search(Request $request){
+        $box = new Box;
+
+        $search = $box->search($request->name);
+
+        dd($search);
+    }
+
 }

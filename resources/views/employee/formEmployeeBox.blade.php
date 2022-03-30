@@ -61,6 +61,8 @@
                 placeholder="Ordem"
                 @if($action == 'update')
                 value="{{$bond_employee->order}}"
+                @else
+                value="{{$order}}"
                 @endif
                 >
               <span class="icon left"><i class="fa-solid fa-list"></i></span>

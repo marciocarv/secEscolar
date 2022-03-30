@@ -11,8 +11,11 @@ class StudentController extends Controller
 {
     public function setStore($id){
         $title = "Cadastrar Aluno";
+        $box = Box::findOrFail($id);
 
-        return view('student.formStudent', ['box_id'=>$id, 'title'=>$title, 'action'=>'store', 'route'=>'storeStudent']);
+        $order = $box->bond_students->count() + 1;
+        
+        return view('student.formStudent', ['box_id'=>$box->id, 'title'=>$title, 'action'=>'store', 'route'=>'storeStudent', 'order'=>$order]);
     }
 
     public function store(Request $request){

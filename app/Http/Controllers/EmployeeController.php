@@ -12,7 +12,11 @@ class EmployeeController extends Controller
     public function setStoreBox($id){
         $title = "Cadastrar Servidor";
 
-        return view('employee.formEmployeeBox', ['box_id'=>$id, 'title'=>$title, 'action'=>'store', 'route'=>'storeBoxEmployee']);
+        $box = Box::findOrFail($id);
+
+        $order = $box->bond_employees->count() + 1;
+
+        return view('employee.formEmployeeBox', ['box_id'=>$box->id, 'title'=>$title, 'action'=>'store', 'route'=>'storeBoxEmployee', 'order'=>$order]);
     }
 
     public function storeBox(Request $request){

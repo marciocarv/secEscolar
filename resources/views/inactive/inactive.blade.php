@@ -19,11 +19,11 @@
   </div>
 
   <div class="">
-    <form method="POST" action="#">
+    <form method="GET" action="{{route('search')}}">
       <div class="field">
         <label class="label">Pesquisar</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Nome do aluno, servidor etc.">
+          <input class="input" id="name" name="name" type="text" placeholder="Nome do aluno, servidor etc.">
         </div>
       </div>
       <div class="field grouped">
@@ -86,5 +86,28 @@
 @endsection
 
 @section('script')
+
+<script>
+  function uppercase(ev){
+    const input = ev.target;
+	  input.value = input.value.toUpperCase();
+  }
+
+  function less_space(ev){
+    const input = ev.target;
+	  input.value = input.value.replace(/( )+/g, ' ');
+    input.value = input.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  }
+
+  document.querySelector('#name').addEventListener('keyup', (ev) => {
+    uppercase(ev);
+  });
+
+  document.querySelector('#name').addEventListener('blur', (ev) => {
+    less_space(ev);
+  });
+
+
+</script>
 
 @endsection

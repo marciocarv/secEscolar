@@ -22,6 +22,7 @@ Route::prefix('caixa')->group(function (){
     Route::get('/visualizar/{id}', [BoxController::class, 'view'])->name('viewBox');
     Route::get('/mostrar/{type}', [BoxController::class, 'show'])->name('showBox');
     Route::get('/imprimir/{id}', [BoxController::class, 'print'])->name('printBox');
+    Route::get('/pesquisar', [BoxController::class, 'search'])->name('search');
 });
 
 Route::prefix('aluno')->group(function (){
